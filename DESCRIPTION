@@ -17,4 +17,7 @@ Imports:
     dplyr,
     lubridate,
     sf,
-    stringr
+    stringr,
+    taxize,
+    tibble,
+    tidyr
