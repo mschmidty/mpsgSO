@@ -17,17 +17,19 @@ get_taxonomies <- function(x, query_field = "scientific_name") {
   convert_taxonomy <- function(i, x) {
     gbif_taxonID <- names(x)[[i]]
 
-    named_taxonomy <- x[[i]] |>
-      dplyr::select(rank, name) |>
-      tidyr::pivot_wider(names_from = rank, values_from = name)
+    if (!is.na(gbif_taxonID)) {
+      named_taxonomy <- x[[i]] |>
+        dplyr::select(rank, name) |>
+        tidyr::pivot_wider(names_from = rank, values_from = name)
 
-    final_id <- x[[i]] |>
-      dplyr::filter(rank == "species") |>
-      dplyr::pull(id)
+      final_id <- x[[i]] |>
+        dplyr::filter(rank == "species") |>
+        dplyr::pull(id)
 
-    named_taxonomy |>
-      dplyr::bind_cols(tibble::tibble(taxon_id = as.character(final_id))) |>
-      dplyr::bind_cols(tibble::tibble(gbif_taxonID = gbif_taxonID))
+      named_taxonomy |>
+        dplyr::bind_cols(tibble(taxon_id = as.character(final_id))) |>
+        dplyr::bind_cols(tibble(gbif_taxonID = gbif_taxonID))
+    }
   }
   t <- lapply(seq_along(class), convert_taxonomy, class)
 
