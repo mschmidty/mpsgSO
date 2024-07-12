@@ -5,7 +5,5 @@
 # devtools::load_all()
 
 # test <- sp_list_ex |>
-#   head(100)|>
-#   pull(scientific_name)
-
-# ids <- taxize::get_gbifid(test)
+#   slice_sample(n = 5) |>
+#   get_taxonomies()
