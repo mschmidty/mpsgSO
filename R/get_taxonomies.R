@@ -11,13 +11,13 @@ get_taxonomies <- function(x, query_field = "scientific_name") {
 
 
 
-  orig_id <- taxize::get_gbifid(sci_name, ask = FALSE, rows = 1, messages = FALSE)
-  class <- taxize::classification(orig_id, db = "gbif")
+  orig_id <- taxize::get_natservid(sci_name, ask = FALSE, rows = 1, messages = FALSE)
+  class <- taxize::classification(orig_id, db = "natserv")
 
   convert_taxonomy <- function(i, x) {
-    gbif_taxonID <- names(x)[[i]]
+    natserv_taxonID <- names(x)[[i]]
 
-    if (!is.na(gbif_taxonID)) {
+    if (!is.na(natserv_taxonID)) {
       named_taxonomy <- x[[i]] |>
         dplyr::select(rank, name) |>
         tidyr::pivot_wider(names_from = rank, values_from = name)
@@ -27,8 +27,8 @@ get_taxonomies <- function(x, query_field = "scientific_name") {
         dplyr::pull(id)
 
       named_taxonomy |>
-        dplyr::bind_cols(tibble(taxon_id = as.character(final_id))) |>
-        dplyr::bind_cols(tibble(gbif_taxonID = gbif_taxonID))
+        dplyr::bind_cols(tibble::tibble(taxon_id = as.character(final_id))) |>
+        dplyr::bind_cols(tibble::tibble(natserv_taxonID = natserv_taxonID))
     }
   }
   t <- lapply(seq_along(class), convert_taxonomy, class)
@@ -36,6 +36,6 @@ get_taxonomies <- function(x, query_field = "scientific_name") {
   all_taxonomies <- dplyr::bind_rows(t)
 
   x |>
-    dplyr::bind_cols(tibble(gbif_taxonID = as.character(orig_id))) |>
-    dplyr::left_join(all_taxonomies, by = "gbif_taxonID")
+    dplyr::bind_cols(tibble::tibble(natserv_taxonID = as.character(orig_id))) |>
+    dplyr::left_join(all_taxonomies, by = "natserv_taxonID")
 }
