@@ -4,16 +4,16 @@
 #'     and read those data into R. This function then convers the JSON
 #'     data returned into a `tibble::tibble()`.
 #
-#' @param species_list A vector of species names.
-#' @param states A vector of 2-letter US state codes. Default is NULL, if
+#' @param species_list A character vector of species names.
+#' @param states A character vector of 2-letter US state codes. Default is NULL, if
 #'     NULL all US states are returned.
 #'
 #' @return tibble::tibble()
+#' @export
 #'
 #' @example
 #' spp = c("Buteo jamaicensis", "Falco peregrinus", "Aquila chrysaetos")
 #' ns_ranks(spp, c("UT", "CO"))
-
 ns_ranks <- function(species_list, states = NULL) {
   #-- Clean species list
   spp <- species_list[!is.na(species_list)] |>
