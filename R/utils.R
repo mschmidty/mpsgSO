@@ -1,15 +1,14 @@
-#' ---
-#' title: "Functions for Species Occurrence Data Pulls"
-#' author:
-#'   - name: "Matthew Van Scoyoc" 
-#'     affiliation: |
-#'       | Mountain Planning Service Group, Regions 1-4
-#'       | Forest Service, USDA
-#' date: 3 January, 2024
-#' 
-#' This script holds functions for reading and clipping feature classes from 
-#'     geodatabases and pulling G-ranks from NatureServe.
-#' -----------------------------------------------------------------------------
+# title: "Functions for Species Occurrence Data Pulls"
+# author:
+#   - name: "Matthew Van Scoyoc" 
+#     affiliation: |
+#       | Mountain Planning Service Group, Regions 1-4
+#       | Forest Service, USDA
+# date: 3 January, 2024
+# 
+# This script holds functions for reading and clipping feature classes from 
+#     geodatabases and pulling G-ranks from NatureServe.
+# -----------------------------------------------------------------------------
 
 
 

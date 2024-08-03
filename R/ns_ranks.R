@@ -11,7 +11,7 @@
 #' @return tibble::tibble()
 #' @export
 #'
-#' @example
+#' @examples
 #' spp = c("Buteo jamaicensis", "Falco peregrinus", "Aquila chrysaetos")
 #' ns_ranks(spp, c("UT", "CO"))
 ns_ranks <- function(species_list, states = NULL) {
