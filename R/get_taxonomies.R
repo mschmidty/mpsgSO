@@ -44,6 +44,6 @@ get_taxonomies <- function(x, query_field = "scientific_name") {
     dplyr::left_join(all_taxonomies, by = "gbif_taxonID") 
 
   x |>
-    left_join(all_sp_taxonomies_table, by=query_field)
+    dplyr::left_join(all_sp_taxonomies_table, by=query_field)
 
 }
