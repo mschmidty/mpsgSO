@@ -27,7 +27,7 @@ get_taxonomies <- function(x, query_field = "scientific_name") {
         tidyr::pivot_wider(names_from = rank, values_from = name)
 
       final_id <- x[[i]] |>
-        dplyr::filter(rank == "species") |>
+        tail(1) |> 
         dplyr::pull(id)
 
       named_taxonomy |>
